@@ -1,5 +1,5 @@
 ---
-title: "Astrophotos by Tiago Melo"
+title: "Astrofotografias by Tiago Melo"
 layout: default
 description: "Taking some photos from Sul de Minas Gerais - Brasil."
 ---
@@ -7,7 +7,6 @@ description: "Taking some photos from Sul de Minas Gerais - Brasil."
 <section class="mt-4 mb-5">
 
   <div class="container-fluid mb-4">
-    <h1 class="font-weight-bold title text-light">Explore</h1>
     <div class="row">
       {% include menu-categories.html %}
     </div>
@@ -16,7 +15,7 @@ description: "Taking some photos from Sul de Minas Gerais - Brasil."
   <div class="container-fluid">
 
     <div class="card-columns">
-      {% for post in paginator.posts reversed %}
+      {% for post in paginator.posts %}
       {% include card-post.html %}
       {% endfor %}
     </div>

@@ -1,3 +1,3 @@
-# Astrophotos by Tiago Melo
+# Astrofotografias by Tiago Melo
 
-Taking some photons from Sul de Minas Gerais / Brasil.
+Capturando alguns fótons do Sul de Minas Gerais.

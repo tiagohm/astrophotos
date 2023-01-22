@@ -22,12 +22,128 @@ layout: default
 
             <small class="text-muted d-block mb-3">
               {% unless page.metadate == "hide" %}
-              {{ page.date | date: '%B %d, %Y' }}
+              {{ page.date | date: '%Y-%m-%d' }}
               {% endunless %}
               {% if page.author %}
               , by {{page.author | capitalize}}
               {% endif %}
             </small>
+
+            <h3 id="setup">Setup</h3>
+
+            <div>
+              {% if page.mount %}
+              <span class="equipment">
+                <span class="type text-muted">Montagem</span>
+                <span class="model">{{ page.mount }}</span>
+              </span>
+              {% endif %}
+
+              {% if page.telescope %}
+              <span class="equipment">
+                <span class="type text-muted">Telescópio</span>
+                <span class="model">{{ page.telescope }}</span>
+              </span>
+              {% endif %}
+
+              {% if page.imagingCamera %}
+              <span class="equipment">
+                <span class="type text-muted">Câmera de Captura</span>
+                <span class="model">{{ page.imagingCamera }}</span>
+              </span>
+              {% endif %}
+
+              {% if page.guidingCamera %}
+              <span class="equipment">
+                <span class="type text-muted">Câmera-Guia</span>
+                <span class="model">{{ page.guidingCamera }}</span>
+              </span>
+              {% endif %}
+
+              {% if page.guidescope %}
+              <span class="equipment">
+                <span class="type text-muted">Telescópio-Guia</span>
+                <span class="model">{{ page.guidescope }}</span>
+              </span>
+              {% endif %}
+            </div>
+
+            {% assign totalOfExposure = 0 %}
+
+            <h3 id="filters">Filters</h3>
+
+            <div>
+              {% if page.luminance %}
+              {% assign exposure = page.luminance[0] | times: page.luminance[1] %}
+              {% assign totalOfExposure = totalOfExposure | plus: exposure %}
+              <span class="filter">
+                <span class="type text-muted">Luminance</span>
+                <span class="model">{{ page.luminance[0] }}x{{ page.luminance[1] }}s</span>
+              </span>
+              {% endif %}
+
+              {% if page.red %}
+              {% assign exposure = page.red[0] | times: page.red[1] %}
+              {% assign totalOfExposure = totalOfExposure | plus: exposure %}
+              <span class="filter">
+                <span class="type text-muted">Red</span>
+                <span class="model">{{ page.red[0] }}x{{ page.red[1] }}s</span>
+              </span>
+              {% endif %}
+
+              {% if page.green %}
+              {% assign exposure = page.green[0] | times: page.green[1] %}
+              {% assign totalOfExposure = totalOfExposure | plus: exposure %}
+              <span class="filter">
+                <span class="type text-muted">Green</span>
+                <span class="model">{{ page.green[0] }}x{{ page.green[1] }}s</span>
+              </span>
+              {% endif %}
+
+              {% if page.blue %}
+              {% assign exposure = page.blue[0] | times: page.blue[1] %}
+              {% assign totalOfExposure = totalOfExposure | plus: exposure %}
+              <span class="filter">
+                <span class="type text-muted">Blue</span>
+                <span class="model">{{ page.blue[0] }}x{{ page.blue[1] }}s</span>
+              </span>
+              {% endif %}
+
+              {% if page.ha %}
+              {% assign exposure = page.ha[0] | times: page.ha[1] %}
+              {% assign totalOfExposure = totalOfExposure | plus: exposure %}
+              <span class="filter">
+                <span class="type text-muted">Ha</span>
+                <span class="model">{{ page.ha[0] }}x{{ page.ha[1] }}s</span>
+              </span>
+              {% endif %}
+
+              {% if page.sii %}
+              {% assign exposure = page.sii[0] | times: page.sii[1] %}
+              {% assign totalOfExposure = totalOfExposure | plus: exposure %}
+              <span class="filter">
+                <span class="type text-muted">SII</span>
+                <span class="model">{{ page.sii[0] }}x{{ page.sii[1] }}s</span>
+              </span>
+              {% endif %}
+
+              {% if page.oiii %}
+              {% assign exposure = page.oiii[0] | times: page.oiii[1] %}
+              {% assign totalOfExposure = totalOfExposure | plus: exposure %}
+              <span class="filter">
+                <span class="type text-muted">OIII</span>
+                <span class="model">{{ page.oiii[0] }}x{{ page.oiii[1] }}s</span>
+              </span>
+              {% endif %}
+
+              <span class="filter">
+                {% assign totalOfExposureInMinutes = totalOfExposure | divided_by: 60 %}
+                {% assign totalOfExposureInSeconds = totalOfExposure | divided_by: 60.0 | minus: totalOfExposureInMinutes | times: 60 | floor %}
+                <span class="type text-muted">Total</span>
+                <span class="model">{{ totalOfExposure }}s / </span>
+                <span class="model">{{ totalOfExposureInMinutes }}m {{ totalOfExposureInSeconds }}s</span>
+              </span>
+            </div>
 
             {{ content }}
 
