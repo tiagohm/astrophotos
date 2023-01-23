@@ -10,8 +10,11 @@ layout: default
         <article class="card">
 
           {% if page.image %}
-          <img class="card-img-top" src="{% if page.image contains " ://" %}{{ page.image }}{% else %}{{ page.image
-            | absolute_url }}{% endif %}" alt="{{ page.title }}">
+          <a data-fslightbox="gallery" data-alt="{{ page.title }}" href="{% if page.image contains " ://" %}{{ page.image }}{% else %}{{ page.image
+            | absolute_url }}{% endif %}">
+            <img loading="lazy" class="card-img-top" src="{% if page.image contains " ://" %}{{ page.image }}{% else %}{{ page.image
+              | absolute_url }}{% endif %}" alt="{{ page.title }}">
+          </a>
           {% endif %}
 
           <div class="card-body text-light">
@@ -70,7 +73,7 @@ layout: default
 
             {% assign totalOfExposure = 0 %}
 
-            <h3 id="filters">Filters</h3>
+            <h3 id="filters">Filtros</h3>
 
             <div>
               {% if page.luminance %}
@@ -138,7 +141,7 @@ layout: default
 
               <span class="filter">
                 {% assign totalOfExposureInMinutes = totalOfExposure | divided_by: 60 %}
-                {% assign totalOfExposureInSeconds = totalOfExposure | divided_by: 60.0 | minus: totalOfExposureInMinutes | times: 60 | floor %}
+                {% assign totalOfExposureInSeconds = totalOfExposure | divided_by: 60.0 | minus: totalOfExposureInMinutes | times: 60 | ceil %}
                 <span class="type text-muted">Total</span>
                 <span class="model">{{ totalOfExposure }}s / </span>
                 <span class="model">{{ totalOfExposureInMinutes }}m {{ totalOfExposureInSeconds }}s</span>
@@ -179,3 +182,5 @@ layout: default
     </div>
   </div>
 </section>
+
+<script src="https://cdn.jsdelivr.net/npm/fslightbox@3.3.2-2/fslightbox.js" integrity="sha256-JToWTHFYP8tOtelcl5toJRZF/khPalwG3ZBfkVg/Je8=" crossorigin="anonymous"></script>
