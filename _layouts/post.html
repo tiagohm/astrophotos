@@ -10,10 +10,10 @@ layout: default
         <article class="card">
 
           {% if page.image %}
-          <a data-fslightbox="gallery" data-alt="{{ page.title }}" href="{% if page.image contains " ://" %}{{ page.image }}{% else %}{{ page.image
-            | absolute_url }}{% endif %}">
-            <img loading="lazy" class="card-img-top" src="{% if page.image contains " ://" %}{{ page.image }}{% else %}{{ page.image
-              | absolute_url }}{% endif %}" alt="{{ page.title }}">
+          <a data-fslightbox="gallery" data-alt="{{ page.title }}" href="{% if page.image contains " ://" %}{{
+            page.image }}{% else %}{{ page.image | absolute_url }}{% endif %}">
+            <img loading="lazy" class="card-img-top" src="{% if page.image contains " ://" %}{{ page.image }}{% else
+              %}{{ page.image | absolute_url }}{% endif %}" alt="{{ page.title }}">
           </a>
           {% endif %}
 
@@ -141,7 +141,8 @@ layout: default
 
               <span class="filter">
                 {% assign totalOfExposureInMinutes = totalOfExposure | divided_by: 60 %}
-                {% assign totalOfExposureInSeconds = totalOfExposure | divided_by: 60.0 | minus: totalOfExposureInMinutes | times: 60 | ceil %}
+                {% assign totalOfExposureInSeconds = totalOfExposure | divided_by: 60.0 | minus:
+                totalOfExposureInMinutes | times: 60 | ceil %}
                 <span class="type text-muted">Total</span>
                 <span class="model">{{ totalOfExposure }}s / </span>
                 <span class="model">{{ totalOfExposureInMinutes }}m {{ totalOfExposureInSeconds }}s</span>
@@ -163,6 +164,14 @@ layout: default
             </a>
             {% endfor %}
 
+            <div style="margin-top: 32px">
+              <a class="twitter-share-button"
+                href="https://twitter.com/intent/tweet?text={{page.title}}&url={{site.baseurl}}{{page.url}}&hashtags=Astrophotography"
+                data-size="large">
+                Tweet
+              </a>
+            </div>
+
             {% include comments.html %}
 
           </div>
@@ -183,4 +192,24 @@ layout: default
   </div>
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/fslightbox@3.3.2-2/fslightbox.js" integrity="sha256-JToWTHFYP8tOtelcl5toJRZF/khPalwG3ZBfkVg/Je8=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/fslightbox@3.3.2-2/fslightbox.js"
+  integrity="sha256-JToWTHFYP8tOtelcl5toJRZF/khPalwG3ZBfkVg/Je8=" crossorigin="anonymous"></script>
+
+<script>
+  window.twttr = (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+      t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+
+    t._e = [];
+    t.ready = function (f) {
+      t._e.push(f);
+    };
+
+    return t;
+  }(document, "script", "twitter-wjs"));
+</script>
