@@ -10,8 +10,8 @@ layout: default
         <article class="card">
 
           {% if page.image %}
-          <a data-fslightbox="gallery" data-alt="{{ page.title }}" href="{% if page.image contains " ://" %}{{
-            page.image }}{% else %}{{ page.image | absolute_url }}{% endif %}">
+          <a data-alt="{{ page.title }}" href="{% if page.image contains " ://" %}{{ page.image }}{% else %}{{
+            page.image | absolute_url }}{% endif %}">
             <img loading="lazy" class="card-img-top" src="{% if page.image contains " ://" %}{{ page.image }}{% else
               %}{{ page.image | absolute_url }}{% endif %}" alt="{{ page.title }}">
           </a>
@@ -192,8 +192,11 @@ layout: default
   </div>
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/fslightbox@3.3.2-2/fslightbox.js"
-  integrity="sha256-JToWTHFYP8tOtelcl5toJRZF/khPalwG3ZBfkVg/Je8=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/simplelightbox@2.14.2/dist/simple-lightbox.min.js"></script>
+
+<script>
+  var lightbox = new SimpleLightbox('.card a', { maxZoom: 50 })
+</script>
 
 <script>
   window.twttr = (function (d, s, id) {

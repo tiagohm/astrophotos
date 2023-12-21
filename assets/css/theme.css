@@ -738,6 +738,23 @@ span.filter .type {
   font-size: 12px;
 }
 
+.sl-overlay {
+  background: #000;
+}
+
+.sl-wrapper .sl-close {
+  color: #FFF;
+}
+
+.sl-wrapper .sl-navigation button {
+  display: none !important;
+}
+
+.sl-wrapper img {
+  image-rendering: pixelated;
+  filter: brightness(1.5);
+}
+
 ::-webkit-scrollbar {
   width: 6px
 }
